@@ -1,0 +1,13 @@
+This is a Wikipedia wannabe created as school project in the course TNM065
+Document Structures at Linköping University.
+
+The goal of the project is to implement the website using XML and XSLT
+transformations for several output channels.
+
+This project is implemented in Django, and utilizes the django-easymode
+library.
+
+Read more:
+http://www.hedin.mobi/TNM065/projekt/
+http://www.djangoproject.com/
+http://packages.python.org/django-easymode/
