@@ -1,0 +1,20 @@
+<!ELEMENT django-objects (object*)>
+<!ATTLIST django-objects version CDATA #REQUIRED>
+
+<!ELEMENT object (field*,object*)>
+<!ATTLIST object pk CDATA #REQUIRED>
+<!ATTLIST object model CDATA #REQUIRED>
+
+<!ENTITY % relation_type "(ManyToOneRel)">
+<!ENTITY % field_type "(CharField|TextField|DateTimeField)">
+
+<!ELEMENT field (#PCDATA)>
+<!ATTLIST field name CDATA #REQUIRED>
+
+<!-- If the field is a data field -->
+<!ATTLIST field type %field_type; #IMPLIED>
+
+<!-- If the field is a relation -->
+<!ATTLIST field to CDATA #IMPLIED>
+<!ATTLIST field rel %relation_type; #IMPLIED>
+
