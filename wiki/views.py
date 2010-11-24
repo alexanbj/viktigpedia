@@ -17,3 +17,13 @@ def index(request):
     articles = Article.objects.all()
     print xml(articles)
     return render_to_response('base.xsl', articles)
+
+def view_article(request, id):
+    article = Article.objects.get(id=id)
+    print xml(article)
+    return render_to_response('article.xsl', article)
+
+def edit_article(request, id):
+    article = Article.objects.get(id=id)
+    print xml(article)
+    return render_to_response('edit_article.xsl', article)

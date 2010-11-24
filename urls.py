@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^', include('viktigpedia.wiki.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^tinymce/', include('tinymce.urls')),
 )
 
 if settings.DEBUG:
