@@ -43,7 +43,7 @@
               </div>
 
               <div class="pagecontent">
-                 <xsl:value-of select="field[@name='summary']" />
+                <xsl:value-of select="field[@name='summary']" disable-output-escaping="yes" />
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
         </div>
 
         <div id="footer" class="span-24 prepend-1">
-          Powered by Django
+          This page was last modified <xsl:value-of select="field[@name='last_update']"/>
         </div>
       </div>
    </body>

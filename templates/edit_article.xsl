@@ -46,8 +46,8 @@
 
               <div class="pagecontent">
                  <form method="post">
-                  <input type="text" name="title" value="lol" />
-                  <textarea>
+                  <input type="text" name="title" value="{field[@name='title']}" />
+                  <textarea name="summary">
                     <xsl:value-of select="field[@name='summary']" />
                   </textarea>
                   <input type="submit" value="Save page" title="Save your changes" />
