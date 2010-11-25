@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import StringIO
-
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -27,7 +25,7 @@ def index(request):
 def view_article(request, title):
     edit_url = reverse('edit_article', args=[title])
     try:
-        article = Article.objects.get(title=title)
+        article = Article.objects.get(title__iexact=title)
 
         params = {'editurl' : xslt_param_builder(edit_url)}
         return render_to_response('article.xsl', article, params)
@@ -40,7 +38,7 @@ def edit_article(request, title):
     article = None
 
     try:
-        article = Article.objects.get(title=title)
+        article = Article.objects.get(title__iexact=title)
     except Article.DoesNotExist:
         article = Article(title=title, creator=request.user)
 
