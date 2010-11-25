@@ -17,7 +17,7 @@
       <div id="top" class="span-24">
         <div class="menu">
           <ul>
-            <li><a href="/" title="Home">Home</a></li>
+            <li><a href="{$editurl}" title="You can edit this page.">Edit</a></li>
           </ul>
         </div>
       </div>

@@ -21,5 +21,5 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         from markdown import markdown
-        self.rendered = markdown(self.content, ['footnotes', 'toc'])
+        self.rendered = markdown(self.content, ['footnotes', 'toc', 'wikilinks',])
         super(Article, self).save(*args, **kwargs)
