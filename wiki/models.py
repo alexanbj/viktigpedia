@@ -10,7 +10,7 @@ from wiki.utils import slugify
 @toxml
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(editable=False, max_length=200)
+    slug = models.SlugField(editable=False, serialize=False, max_length=200)
 
     content = models.TextField()
     rendered = models.TextField(editable=False, blank=True)
