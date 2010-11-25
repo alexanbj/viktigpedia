@@ -1,4 +1,5 @@
 import StringIO
+import re
 
 from django.conf import settings
 
@@ -15,3 +16,14 @@ def xslt_param_builder(arg):
 
     byte_string = stream.getvalue()
     return prepare_string_param(byte_string.decode('utf-8'))
+
+def slugify(txt):
+    """A custom version of slugify since Django's isn't very wikilinks friendly"""
+
+    txt = txt.strip() # remove trailing whitespace
+    txt = re.sub('\s*-\s*','-', txt, re.UNICODE) # remove spaces before and after dashes
+    txt = re.sub('[\s/]', '_', txt, re.UNICODE) # replace remaining spaces with underscores
+    txt = re.sub('(\d):(\d)', r'\1-\2', txt, re.UNICODE) # replace colons between numbers with dashes
+    txt = re.sub('"', "'", txt, re.UNICODE) # replace double quotes with single quotes
+    txt = re.sub(r'[?,:!@#~`+=$%^&\\*()\[\]{}<>]','',txt, re.UNICODE) # remove some characters altogether
+    return txt

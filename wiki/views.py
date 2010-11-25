@@ -22,10 +22,13 @@ def index(request):
     articles = Article.objects.all()
     return render_to_response('base.xsl', articles)
 
-def view_article(request, title):
-    edit_url = reverse('edit_article', args=[title])
+def view_article(request, slug):
+    edit_url = reverse('edit_article', args=[slug])
     try:
-        article = Article.objects.get(title__iexact=title)
+        # Enables case-insentivity
+        article = Article.objects.get(slug=slug)
+        if article.slug != slug:
+            return HttpResponseRedirect(reverse('view_article', args=[article.slug]))
 
         params = {'editurl' : xslt_param_builder(edit_url)}
         return render_to_response('article.xsl', article, params)
@@ -34,22 +37,27 @@ def view_article(request, title):
     except Article.DoesNotExist:
         return HttpResponseRedirect(edit_url)
 
-def edit_article(request, title):
+def edit_article(request, slug):
     article = None
 
     try:
-        article = Article.objects.get(title__iexact=title)
+        # Enables case-insentivity
+        article = Article.objects.get(slug__iexact=slug)
+        if article.slug != slug:
+            return HttpResponseRedirect(reverse('edit_article', args=[article.slug]))
     except Article.DoesNotExist:
+        title = slug.replace('_', ' ')
         article = Article(title=title, creator=request.user)
 
-    view_url = reverse('view_article', args=[title])
 
     if request.method == 'POST':
         article.title = request.POST['title']
         article.content = request.POST['content']
         article.save()
+        view_url = reverse('view_article', args=[article.slug])
         return HttpResponseRedirect(view_url)
 
+    view_url = reverse('view_article', args=[slug])
     params = {'viewurl' : xslt_param_builder(view_url)}
 
     return render_to_response('edit_article.xsl', article, params)
