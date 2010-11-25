@@ -25,8 +25,11 @@ def view_article(request, id):
 
 def edit_article(request, id):
     article = Article.objects.get(id=id)
+    print xml(article)
     if request.method == 'POST':
         article.title = request.POST['title']
-        article.summary = request.POST['summary']
-        article.save()
+        #article.summary = request.POST['summary']
+        #article.content = request.POST['content']
+        #article.save()
+        #return HttpResponseRedirect(reverse('view_article', args=(article.title,)))
     return render_to_response('edit_article.xsl', article)

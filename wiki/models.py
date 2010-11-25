@@ -10,11 +10,16 @@ from easymode.tree.decorators import toxml
 class Article(models.Model):
     title = models.CharField(max_length=200)
 
-    summary = models.TextField()
     content = models.TextField()
+    rendered = models.TextField(editable=False, blank=True)
     creator = models.ForeignKey(User, verbose_name='Article Creator')
     created_at = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        from markdown import markdown
+        self.rendered = markdown(self.content, ['footnotes', 'toc'])
+        super(Article, self).save(*args, **kwargs)

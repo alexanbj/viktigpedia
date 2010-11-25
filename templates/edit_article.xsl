@@ -47,8 +47,8 @@
               <div class="pagecontent">
                  <form method="post">
                   <input type="text" name="title" value="{field[@name='title']}" />
-                  <textarea name="summary">
-                    <xsl:value-of select="field[@name='summary']" />
+                  <textarea name="content">
+                    <xsl:value-of select="field[@name='content']" />
                   </textarea>
                   <input type="submit" value="Save page" title="Save your changes" />
                  </form>
@@ -71,7 +71,7 @@
         </div>
 
         <div id="footer" class="span-24 prepend-1">
-          Powered by Django
+          This page was last modified <xsl:value-of select="field[@name='last_update']"/>
         </div>
       </div>
    </body>

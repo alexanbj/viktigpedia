@@ -43,7 +43,7 @@
               </div>
 
               <div class="pagecontent">
-                <xsl:value-of select="field[@name='summary']" disable-output-escaping="yes" />
+                <xsl:value-of select="field[@name='rendered']" disable-output-escaping="yes" />
               </div>
             </div>
           </div>
