@@ -7,6 +7,7 @@ from django.conf import settings
 
 from easymode.xslt import prepare_string_param
 from easymode.utils.xmlutils import XmlPrinter
+from easymode.xslt.response import render_to_response as xslt_render_to_response
 
 def xslt_param_builder(arg):
     """
@@ -45,3 +46,12 @@ def split_keywords(query):
 
     keywords.extend(query.split())
     return keywords
+
+def render_to_response(request, template, object, params=None):
+    """Wrapper function for rendering correct template based on mobile user
+    agent or not."""
+
+    if request.mobile:
+        template = settings.MOBILE_TEMPLATE_PREFIX + '/' + template
+        print template
+    return xslt_render_to_response(template, object, params)

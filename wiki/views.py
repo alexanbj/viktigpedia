@@ -6,12 +6,13 @@ from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.db.models import Q
 
-from easymode.xslt.response import render_to_response
+#from easymode.xslt.response import render_to_response
 from easymode.tree import xml
 
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
 from wiki.utils import split_keywords
+from wiki.utils import render_to_response
 
 #try:
 #    WIKI_LOCK_DURATION = settings.WIKI_LOCK_DURATION
@@ -23,10 +24,10 @@ from wiki.utils import split_keywords
 def index(request):
     articles = Article.objects.all()
     if request.method == 'POST':
-        if request.POST['query']:
+        if getattr(request.POST, 'query', None):
             articles =  search(request.POST['query'])
     print xml(articles)
-    return render_to_response('base.xsl', articles)
+    return render_to_response(request, 'base.xsl', articles)
 
 def view_article(request, slug):
     edit_url = reverse('edit_article', args=[slug])
@@ -37,7 +38,7 @@ def view_article(request, slug):
             return HttpResponseRedirect(reverse('view_article', args=[article.slug]))
 
         params = {'editurl' : xslt_param_builder(edit_url)}
-        return render_to_response('article.xsl', article, params)
+        return render_to_response(request, 'article.xsl', article, params)
 
     # If the article does not exist, we go to edit mode
     except Article.DoesNotExist:
@@ -66,7 +67,7 @@ def edit_article(request, slug):
     view_url = reverse('view_article', args=[slug])
     params = {'viewurl' : xslt_param_builder(view_url)}
 
-    return render_to_response('edit_article.xsl', article, params)
+    return render_to_response(request, 'edit_article.xsl', article, params)
 
 def search(query):
     keywords = split_keywords(query)
