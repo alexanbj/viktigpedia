@@ -4,12 +4,14 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
+from django.db.models import Q
 
 from easymode.xslt.response import render_to_response
 from easymode.tree import xml
 
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
+from wiki.utils import split_keywords
 
 #try:
 #    WIKI_LOCK_DURATION = settings.WIKI_LOCK_DURATION
@@ -20,6 +22,10 @@ from wiki.utils import xslt_param_builder
 
 def index(request):
     articles = Article.objects.all()
+    if request.method == 'POST':
+        if request.POST['query']:
+            articles =  search(request.POST['query'])
+    print xml(articles)
     return render_to_response('base.xsl', articles)
 
 def view_article(request, slug):
@@ -61,3 +67,12 @@ def edit_article(request, slug):
     params = {'viewurl' : xslt_param_builder(view_url)}
 
     return render_to_response('edit_article.xsl', article, params)
+
+def search(query):
+    keywords = split_keywords(query)
+    for keyword in keywords:
+        title = Q(title__icontains=keyword)
+        content = Q(content__icontains=keyword)
+        articles = Article.objects.filter(title | content)
+
+    return articles

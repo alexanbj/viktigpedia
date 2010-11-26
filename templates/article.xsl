@@ -16,9 +16,13 @@
     <div class="container">
       <div id="top" class="span-24">
         <div class="menu">
+            <form action="/" method="post">
           <ul>
             <li><a href="{$editurl}" title="You can edit this page.">Edit</a></li>
+              <li><input type="text" name="query"/></li>
+              <li><input type="submit" name="search"/></li>
           </ul>
+            </form>
         </div>
       </div>
 

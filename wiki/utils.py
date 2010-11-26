@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import StringIO
 import re
 
@@ -27,3 +29,19 @@ def slugify(txt):
     txt = re.sub('"', "'", txt, re.UNICODE) # replace double quotes with single quotes
     txt = re.sub(r'[?,:!@#~`+=$%^&\\*()\[\]{}<>]','',txt, re.UNICODE) # remove some characters altogether
     return txt
+
+def split_keywords(query):
+    """Split a query into keywords. Supports double quoted words as a single
+    keyword."""
+
+    keywords = []
+
+    while '"' in query:
+        first = query.find('"')
+        second = query.find('"', first + 1)
+        quoted = query[first:second + 1]
+        keywords.append(quoted.strip('"'))
+        query = query.replace(quoted, ' ')
+
+    keywords.extend(query.split())
+    return keywords
