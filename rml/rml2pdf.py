@@ -48,7 +48,7 @@ def go(xmlInput, outputFileName=None, outDir=None, dtdDir=None):
         sys.stderr.write('The ``dtdDir`` option is not yet supported.')
 
     # Allows both streams and filenames as input
-    if isinstance(xmlInput, str):
+    if isinstance(xmlInput, basestring):
         xmlInput = open(xmlInput, 'r')
     root = etree.parse(xmlInput).getroot()
     doc = document.Document(root)
@@ -57,7 +57,7 @@ def go(xmlInput, outputFileName=None, outDir=None, dtdDir=None):
     outputFile = None
 
     # If an output filename is specified, create an output filepointer for it
-    if outputFileName is not None and isinstance(outputFileName, str):
+    if outputFileName is not None and isinstance(outputFileName, basestring):
         if outDir is not None:
             outputFileName = os.path.join(outDir, outputFileName)
         outputFile = open(outputFileName, 'wb')
