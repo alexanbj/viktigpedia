@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
 
+import cStringIO
+import StringIO
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
-#from easymode.xslt.response import render_to_response
+from easymode.xslt.response import render_to_string
 from easymode.tree import xml
+
+from rml import rml2pdf
 
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
@@ -30,6 +37,8 @@ def index(request):
     return render_to_response(request, 'base.xsl', articles)
 
 def view_article(request, slug):
+    if 'pdf' in request.GET:
+        return pdf(request)
     edit_url = reverse('edit_article', args=[slug])
     try:
         # Enables case-insentivity
@@ -38,6 +47,7 @@ def view_article(request, slug):
             return HttpResponseRedirect(reverse('view_article', args=[article.slug]))
 
         params = {'editurl' : xslt_param_builder(edit_url)}
+        print xml(article)
         return render_to_response(request, 'article.xsl', article, params)
 
     # If the article does not exist, we go to edit mode
@@ -69,7 +79,30 @@ def edit_article(request, slug):
 
     return render_to_response(request, 'edit_article.xsl', article, params)
 
+def create_pdf(request, slug):
+    """Returns article as PDF, with the help of RML markup."""
+
+    # We only allow PDF creation of existing articles
+    article = get_object_or_404(Article, slug__iexact=slug)
+
+    # Generate RML of article
+    rml = StringIO.StringIO(render_to_string('rml.xsl', article))
+
+    # Create the PDF
+    buf = cStringIO.StringIO()
+    rml2pdf.go(rml, outputFileName=buf)
+    buf.seek(0)
+    pdf = buf.read()
+    buf.close()
+
+    # Set up response object
+    response = HttpResponse(mimetype='application/pdf')
+    response.write(pdf)
+    response['Content-Disposition'] = ('attachment; filename=%s.pdf' % article.title)
+    return response
+
 def search(query):
+    """Returns articles matching query."""
     keywords = split_keywords(query)
     for keyword in keywords:
         title = Q(title__icontains=keyword)

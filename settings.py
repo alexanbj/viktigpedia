@@ -105,4 +105,5 @@ INSTALLED_APPS = (
 #    'easymode',
 #    'reversion',
     'wiki',
+    'rml',
 )
