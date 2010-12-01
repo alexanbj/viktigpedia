@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 from easymode.xslt.response import render_to_string
+from easymode.xslt.response import render_xml_to_string
 from easymode.tree import xml
 
 from rml import rml2pdf
@@ -85,8 +86,15 @@ def create_pdf(request, slug):
     # We only allow PDF creation of existing articles
     article = get_object_or_404(Article, slug__iexact=slug)
 
+    # Create XML of article, with content unescaped
+    unescaped_article = render_to_string('article-to-xml.xsl', article)
+
     # Generate RML of article
-    rml = StringIO.StringIO(render_to_string('rml.xsl', article))
+    import datetime
+    format = "%a, %d %b %Y %H:%M:%S"
+    timestamp = datetime.datetime.today().strftime(format)
+    params = {'timestamp' : xslt_param_builder(timestamp)}
+    rml = StringIO.StringIO(render_xml_to_string('rml.xsl', unescaped_article, params))
 
     # Create the PDF
     buf = cStringIO.StringIO()

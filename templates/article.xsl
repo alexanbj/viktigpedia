@@ -19,8 +19,9 @@
             <form action="/" method="post">
           <ul>
             <li><a href="{$editurl}" title="You can edit this page.">Edit</a></li>
-              <li><input type="text" name="query"/></li>
-              <li><input type="submit" name="search"/></li>
+            <li><a href="pdf" title="Download as PDF.">PDF</a></li>
+            <li><input type="text" name="query"/></li>
+            <li><input type="submit" name="search"/></li>
           </ul>
             </form>
         </div>
