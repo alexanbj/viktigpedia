@@ -15,7 +15,6 @@ from easymode.xslt.response import render_to_string
 from easymode.xslt.response import render_xml_to_string
 from easymode.tree import xml
 
-from rml import rml2pdf
 
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
@@ -38,12 +37,10 @@ def index(request):
     return render_to_response(request, 'base.xsl', articles)
 
 def view_article(request, slug):
-    if 'pdf' in request.GET:
-        return pdf(request)
     edit_url = reverse('edit_article', args=[slug])
     try:
         # Enables case-insentivity
-        article = Article.objects.get(slug=slug)
+        article = Article.objects.get(slug__iexact=slug)
         if article.slug != slug:
             return HttpResponseRedirect(reverse('view_article', args=[article.slug]))
 
@@ -82,6 +79,8 @@ def edit_article(request, slug):
 
 def create_pdf(request, slug):
     """Returns article as PDF, with the help of RML markup."""
+
+    from rml import rml2pdf
 
     # We only allow PDF creation of existing articles
     article = get_object_or_404(Article, slug__iexact=slug)
