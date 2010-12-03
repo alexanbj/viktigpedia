@@ -26,3 +26,7 @@ class Article(models.Model):
         self.rendered = markdown(self.content, ['footnotes', 'toc', 'wikilinks',])
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('view_article', [self.slug])

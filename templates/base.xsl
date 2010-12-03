@@ -10,6 +10,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/media/css/screen.css" type="text/css" />
     <link rel="stylesheet" href="/media/css/viktigpedia.css" type="text/css" />
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed/" />
   </head>
 
   <body>
