@@ -46,11 +46,17 @@
 
               <div class="pagecontent">
                  <form method="post">
-                  <input type="text" name="title" value="{field[@name='title']}" />
-                  <textarea name="content">
+                  <p>
+                  Title: <input type="text" name="title" value="{field[@name='title']}" />
+                  </p>
+                  Content:
+                  <br />
+                  <textarea name="content" rows="10" cols="40">
                     <xsl:value-of select="field[@name='content']" />
                   </textarea>
+                  <br />
                   <input type="submit" value="Save page" title="Save your changes" />
+                  <a href="{$viewurl}" style="float: right">Cancel</a>
                  </form>
               </div>
             </div>
@@ -59,12 +65,14 @@
           <div id="sidebar" class="span-6 append-1 last">
             <div id="wrapbox">
               <div id="sidebarmenu" class="section">
-                <h3>Contents</h3>
-                <ul>
-                  <li><a href="/" title="Home">Home</a></li>
-                  <li><a href="/" title="Empty">Empty</a></li>
-                  <li><a href="/" title="Empty">Empty</a></li>
-                </ul>
+                <h3>Editing</h3>
+                <p>
+                See <a href="/Markdown_Syntax/">lol</a> for a reference on how
+                to use Markdown
+                </p>
+
+                Please remember to include '[TOC]' in the content to properly
+                generate a table of contents for the article.
               </div>
             </div>
           </div>
