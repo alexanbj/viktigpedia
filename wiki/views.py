@@ -17,7 +17,6 @@ from easymode.xslt.response import render_to_string
 from easymode.xslt.response import render_xml_to_string
 from easymode.tree import xml
 
-
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
 from wiki.utils import split_keywords

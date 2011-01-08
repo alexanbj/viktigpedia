@@ -37,7 +37,6 @@ class Article(models.Model):
 
 def tweet(sender, **kwargs):
     """Issue a tweet when a new article is saved."""
-    print kwargs
 
     if kwargs['created']:
         auth = tweepy.OAuthHandler(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET)
@@ -47,6 +46,5 @@ def tweet(sender, **kwargs):
         api = tweepy.API(auth)
         obj = kwargs['instance']
         lol = api.update_status(obj.title)
-        print lol
 
 post_save.connect(tweet, sender=Article)
