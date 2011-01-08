@@ -2,8 +2,11 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.conf import settings
 
 from easymode.tree.decorators import toxml
+import tweepy
 
 from wiki.utils import slugify
 
@@ -30,3 +33,20 @@ class Article(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('view_article', [self.slug])
+
+
+def tweet(sender, **kwargs):
+    """Issue a tweet when a new article is saved."""
+    print kwargs
+
+    if kwargs['created']:
+        auth = tweepy.OAuthHandler(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET)
+
+        auth.set_access_token(settings.TWITTER_ACCESS_KEY, settings.TWITTER_ACCESS_SECRET)
+
+        api = tweepy.API(auth)
+        obj = kwargs['instance']
+        lol = api.update_status(obj.title)
+        print lol
+
+post_save.connect(tweet, sender=Article)

@@ -113,3 +113,8 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+TWITTER_CONSUMER_KEY = 'F4TxBm5F1d0cMrI5EDdefQ'
+TWITTER_CONSUMER_SECRET = '1v1vfPzi6oo1l6v4y34nh5gWr6ocrHPOKGAQPhlNo'
+TWITTER_ACCESS_KEY = '235557432-McJ4xov23pGzgbQjp1C5c1Xrdox6f8q6xLmLLGuK'
+TWITTER_ACCESS_SECRET = '0aFrvHsdJ96CK03rL2jnjXpmFDVWraKAVVHndtqOl8'
