@@ -33,8 +33,13 @@
             <div id="title" class="span-15">
               <h1>ViktigpediA</h1>
             </div>
-            <div id="login" class="span-5 append-1 last">
-              <a href="url django.contrib.auth.views.logout_then_login">Logout</a>
+            <div id="search" class="span-5 append-1 last">
+            <form action="/search/" method="post">
+          <ul>
+            <li><input type="text" name="query"/></li>
+            <li><input type="submit" name="search"/></li>
+          </ul>
+            </form>
             </div>
           </div>
 
@@ -47,7 +52,7 @@
 
               <div class="pagecontent">
               <p>
-                Welcome to Viktigpedia! 
+                Welcome to Viktigpedia!
                 You can start navigating this page by viewing one of the latest
                 articles added in the menu to the right, or by using the search
                 functionality.
@@ -71,7 +76,7 @@
                 <h3>Latest articles</h3>
                 <ul>
                   <xsl:for-each select="object">
-                    <li><a href="/"><xsl:value-of select="field[@name='title']"/></a></li>
+                    <li><a href="/wiki/{field[@name='slug']}"><xsl:value-of select="field[@name='title']"/></a></li>
                   </xsl:for-each>
                 </ul>
               </div>

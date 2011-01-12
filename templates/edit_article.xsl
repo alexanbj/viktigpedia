@@ -21,6 +21,7 @@
         <div class="menu">
           <ul>
             <li><a href="{$viewurl}">View</a></li>
+            <li><a href="/" title="Home">Home</a></li>
           </ul>
         </div>
       </div>
@@ -33,8 +34,13 @@
             <div id="title" class="span-15">
               <h1>ViktigpediA</h1>
             </div>
-            <div id="login" class="span-5 append-1 last">
-              <a href="url django.contrib.auth.views.logout_then_login">Logout</a>
+            <div id="search" class="span-5 append-1 last">
+            <form action="/search/" method="post">
+          <ul>
+            <li><input type="text" name="query"/></li>
+            <li><input type="submit" name="search"/></li>
+          </ul>
+            </form>
             </div>
           </div>
 
