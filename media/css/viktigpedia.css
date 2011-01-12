@@ -5,7 +5,7 @@ body
 	color: #525252;
 }
 
-h2, a
+h1, h2, h3, h4, h5, h6
 {
 	color: #525252;
 }
@@ -97,10 +97,10 @@ h2, a
 	float: left;
 }
 
-#header #title #blogtitle
+/*#header #title #blogtitle
 {
 	margin-left: 68px;
-}
+}*/
 
 #header #title h1
 {
@@ -109,12 +109,6 @@ h2, a
 	color: #525252;
 	margin-bottom: 5px;
   font-family: 'Crimson Text', arial, serif;
-}
-
-#header #title h2
-{
-	font-size: 14px;
-	color: #525252;
 }
 
 .page {
@@ -133,24 +127,24 @@ h2, a
 	padding-right: 10px;
 }
 
-.page .pageheader .commentcount a
+/*.page .pageheader .commentcount a
 {
 	text-decoration: none;
 	color: #4884bc;
-}
+}*/
 
 .page .pageheader .pagetitle
 {
 	line-height: 20px;
 }
 
-.page .pageheader .pagetitle h2
+/*.page .pageheader .pagetitle h2
 {
 	font-family: Georgia, Times, "Times New Roman", serif;
 	font-size: 20px;
 	padding: 0;
 	margin: 0;
-}
+}*/
 
 
 .page .pagecontent a
@@ -161,8 +155,12 @@ h2, a
 
 .page .pagecontent a:hover
 {
-	color: #e65a05;
 	text-decoration: underline;
+}
+
+.page h1
+{
+  font-size: 25px;
 }
 
 #sidebar #wrapbox
@@ -184,12 +182,19 @@ h2, a
 {
 	font-size: 14px;
 	color: #e65a05;
+	color: #525252;
 	margin-bottom: 10px;
 }
 
 #sidebar .section a
 {
 	text-decoration: none;
+	color: #e65a05;
+}
+
+#sidebar .section a:hover
+{
+  text-decoration: underline;
 }
 
 #sidebar .section ul
@@ -204,7 +209,7 @@ h2, a
 	background: url('/media/img/bottombg.png') no-repeat 0 0;
 }
 
-table.listing thead th
+/*table.listing thead th
 {
     border: 1px solid #ddd;
     font-size: 11px;
@@ -222,10 +227,4 @@ table.listing tbody tr { border-top: 1px solid #ddd }
 table.listing tbody tr.even { background-color: #fcfcfc }
 table.listing tbody tr.odd { background-color: #f7f7f7 }
 table.listing tbody tr:hover { background: #eed !important }
-table.listing tbody tr.focus { background: #ddf !important }
-
-/* FORMS ******************************************************************* */
-div.subform {background: #ddd; border: 1px solid grey; padding: 5px }
-table.subform {background: #ddd; border: 1px solid grey; padding: 5px }
-
-
+table.listing tbody tr.focus { background: #ddf !important }*/

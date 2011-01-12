@@ -45,7 +45,7 @@
 
             <div class="page">
               <div class="pagetitle">
-                <h2>Search results</h2>
+                <h1>Search results</h1>
               </div>
 
               <div class="pagecontent">

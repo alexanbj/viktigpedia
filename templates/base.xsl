@@ -45,7 +45,7 @@
 
             <div class="page">
               <div class="pagetitle">
-                <h2>Welcome to Viktigpedia!</h2>
+                <h1>Welcome to Viktigpedia!</h1>
               </div>
 
               <div class="pagecontent">

@@ -57,7 +57,7 @@
 
             <div class="page">
               <div class="pagetitle">
-                <h2><xsl:value-of select="field[@name='title']"/></h2>
+                <h1><xsl:value-of select="field[@name='title']"/></h1>
               </div>
 
               <div class="pagecontent">
