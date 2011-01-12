@@ -26,7 +26,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         from markdown import markdown
-        self.rendered = markdown(self.content, ['footnotes', 'toc', 'wikilinks',])
+        self.rendered = markdown(self.content, ['footnotes', 'toc', 'wikilinks(base_url=/wiki/)',])
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
 
