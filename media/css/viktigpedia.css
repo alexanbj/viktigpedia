@@ -10,6 +10,44 @@ h2, a
 	color: #525252;
 }
 
+#searchwrapper
+{
+  float:left;width:215px;
+  height:20px;
+  background-image:url(/media/img/searchbox.png);
+  background-repeat:no-repeat;
+  padding:0px;
+  margin:0px;
+  position:relative;
+}
+
+#searchwrapper form 
+{
+  display:inline;
+}
+
+.searchbox
+{
+  border:0px;
+  background-color:transparent;
+  position:absolute;
+  top:1px;
+  left:9px;
+  width:180px;
+  height:18px;
+}
+
+.searchbox_submit
+{
+  border:0px;
+  background-color:transparent;
+  position:absolute;
+  top:0px;
+  left:190px;
+  width:24px;
+  height:20px;
+}
+
 #top
 {
 	text-align: right;

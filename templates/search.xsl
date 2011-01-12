@@ -33,13 +33,11 @@
             <div id="title" class="span-15">
               <h1>ViktigpediA</h1>
             </div>
-            <div id="search" class="span-5 append-1 last">
-            <form action="/search/" method="post">
-          <ul>
-            <li><input type="text" name="query"/></li>
-            <li><input type="submit" name="search"/></li>
-          </ul>
-            </form>
+            <div id="searchwrapper" class="span-5 append-1 last">
+              <form action="/search/" method="post">
+                <input type="text" class="searchbox" name="query"/>
+                <input type="image" src="/media/img/searchbox_submit.png" class="searchbox_submit" alt="Search" name="search"/>
+              </form>
             </div>
           </div>
 
