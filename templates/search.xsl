@@ -10,6 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/media/css/screen.css" type="text/css" />
     <link rel="stylesheet" href="/media/css/viktigpedia.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css' />
 
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed/" />
   </head>
@@ -33,7 +34,7 @@
         <div id="contentwrapper" class="span-24">
           <div id="header" class="span-22 prepend-1 append-1">
             <div id="title" class="span-15">
-              <a href="/"><img src="/media/img/logo.png"/></a>
+              <h1>ViktigpediA</h1>
             </div>
             <div id="login" class="span-5 append-1 last">
               <a href="url django.contrib.auth.views.logout_then_login">Logout</a>

@@ -3,13 +3,14 @@
     doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
     doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" />
 
-<xsl:template match="/">
+<xsl:template match="/django-objects">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
   <head>
     <title>Viktigpedia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/media/css/screen.css" type="text/css" />
     <link rel="stylesheet" href="/media/css/viktigpedia.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css' />
 
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed/" />
   </head>
@@ -30,7 +31,7 @@
         <div id="contentwrapper" class="span-24">
           <div id="header" class="span-22 prepend-1 append-1">
             <div id="title" class="span-15">
-              <a href="/"><img src="/media/img/logo.png"/></a>
+              <h1>ViktigpediA</h1>
             </div>
             <div id="login" class="span-5 append-1 last">
               <a href="url django.contrib.auth.views.logout_then_login">Logout</a>
@@ -41,11 +42,25 @@
 
             <div class="page">
               <div class="pagetitle">
-                <h2>Base template</h2>
+                <h2>Welcome to Viktigpedia!</h2>
               </div>
 
               <div class="pagecontent">
-                 You are now viewing the empty base template.
+              <p>
+                Welcome to Viktigpedia! 
+                You can start navigating this page by viewing one of the latest
+                articles added in the menu to the right, or by using the search
+                functionality.
+                </p>
+
+                <p>
+                Viktigpedia is the end result of a project in the course <a href="http://www.hedin.mobi/TNM065/">TNM065
+                Document Structures</a> at <a href="http://www.liu.se">Linköping University.</a>
+                The code is open source and is available at <a
+                href="https://github.com/alexanbj/viktigpedia">GitHub.</a>
+                </p>
+
+                This website is written in Python using the Django web framework.
               </div>
             </div>
           </div>
@@ -53,11 +68,11 @@
           <div id="sidebar" class="span-6 append-1 last">
             <div id="wrapbox">
               <div id="sidebarmenu" class="section">
-                <h3>Contents</h3>
+                <h3>Latest articles</h3>
                 <ul>
-                  <li><a href="/" title="Home">Home</a></li>
-                  <li><a href="/" title="Empty">Empty</a></li>
-                  <li><a href="/" title="Empty">Empty</a></li>
+                  <xsl:for-each select="object">
+                    <li><a href="/"><xsl:value-of select="field[@name='title']"/></a></li>
+                  </xsl:for-each>
                 </ul>
               </div>
             </div>

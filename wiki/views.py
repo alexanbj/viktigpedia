@@ -39,12 +39,11 @@ class EditLock():
         return self.ip == request.META['REMOTE_ADDR']
 
 def index(request):
-    articles = Article.objects.all()
-    if request.method == 'POST':
-        if getattr(request.POST, 'query', None):
-            articles =  search(request.POST['query'])
-    #print xml(articles)
-    return render_to_response(request, 'base.xsl', articles)
+    latest_articles = Article.objects.order_by('-created_at')[:10]
+    #if request.method == 'POST':
+    #    if getattr(request.POST, 'query', None):
+    #        articles =  search(request.POST['query'])
+    return render_to_response(request, 'base.xsl', latest_articles)
 
 def view_article(request, slug):
     edit_url = reverse('edit_article', args=[slug])

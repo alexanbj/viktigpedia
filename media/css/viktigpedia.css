@@ -54,11 +54,6 @@ h2, a
 	height: 50px;
 }
 
-#header #title
-{
-
-}
-
 #header #title .logo
 {
 	float: left;
@@ -71,10 +66,11 @@ h2, a
 
 #header #title h1
 {
-	font-size: 24px;
+	font-size: 40px;
 	font-weight: bold;
 	color: #525252;
 	margin-bottom: 5px;
+  font-family: 'Crimson Text', arial, serif;
 }
 
 #header #title h2
