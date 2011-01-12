@@ -84,6 +84,18 @@
   </h1>
 </xsl:template>
 
+<xsl:template match="h2">
+  <h2>
+    <xsl:value-of select="."/>
+  </h2>
+</xsl:template>
+
+<xsl:template match="h3|h4|h5">
+  <h3>
+    <xsl:value-of select="."/>
+  </h3>
+</xsl:template>
+
 <xsl:template match="strong">
   <b><xsl:value-of select="node()"/></b>
 </xsl:template>
