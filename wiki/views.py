@@ -15,12 +15,13 @@ from django.shortcuts import get_object_or_404
 
 from easymode.xslt.response import render_to_string
 from easymode.xslt.response import render_xml_to_string
+from easymode.xslt.response import render_to_response
 from easymode.tree import xml
 
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
 from wiki.utils import split_keywords
-from wiki.utils import render_to_response
+#from wiki.utils import render_to_response
 
 try:
     WIKI_LOCK_DURATION = settings.WIKI_LOCK_DURATION
@@ -43,7 +44,7 @@ def index(request):
     #if request.method == 'POST':
     #    if getattr(request.POST, 'query', None):
     #        articles =  search(request.POST['query'])
-    return render_to_response(request, 'base.xsl', latest_articles)
+    return render_to_response('base.xsl', latest_articles)
 
 def view_article(request, slug):
     edit_url = reverse('edit_article', args=[slug])
@@ -55,7 +56,7 @@ def view_article(request, slug):
 
         params = {'editurl' : xslt_param_builder(edit_url)}
         #print xml(article)
-        return render_to_response(request, 'article.xsl', article, params)
+        return render_to_response('article.xsl', article, params)
 
     # If the article does not exist, we go to edit mode
     except Article.DoesNotExist:
@@ -95,7 +96,7 @@ def edit_article(request, slug):
     view_url = reverse('view_article', args=[slug])
     params = {'viewurl' : xslt_param_builder(view_url)}
 
-    return render_to_response(request, 'edit_article.xsl', article, params)
+    return render_to_response('edit_article.xsl', article, params)
 
 def search(request):
 
@@ -112,7 +113,7 @@ def search(request):
         #print result
         #print xml(result)
 
-        return render_to_response(request, 'search.xsl', result, params)
+        return render_to_response('search.xsl', result, params)
 
 def create_pdf(request, slug):
     """Returns article as PDF, with the help of RML markup."""

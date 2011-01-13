@@ -82,6 +82,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfResponseMiddleware',
     # This middleware adds a mobile attribute to a request
     'minidetector.Middleware',
+    # This middleware redirects if the request contains the mobile attribute
+    'middleware.mobile_redirect.MobileRedirect',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -92,8 +94,6 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
-MOBILE_TEMPLATE_PREFIX = 'mobile'
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -102,8 +102,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.markup',
-#    'easymode',
-#    'reversion',
     'wiki',
     'rml',
 )

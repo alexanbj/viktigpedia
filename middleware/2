@@ -1,0 +1,6 @@
+from django.http import HttpResponseRedirect
+
+class MobileRedirect():
+    def process_request(self, request):
+        if request.mobile:
+                return HttpResponseRedirect(mobile_url)
