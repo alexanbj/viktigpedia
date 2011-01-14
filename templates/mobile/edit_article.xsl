@@ -4,75 +4,51 @@
     doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" />
 
 <xsl:template match="django-objects/object">
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html dir='tr' lang='en' xml:lang='en' xmlns="http://www.w3.org/1999/xhtml"> 
   <head>
-    <title>Editing <xsl:value-of select="field[@name='title']"/> - Viktigpedia</title>
+    <title>Viktigpedia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/media/css/screen.css" type="text/css" />
-    <link rel="stylesheet" href="/media/css/viktigpedia.css" type="text/css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <link rel="stylesheet" href="/media/css/mobile.css" type="text/css" />
   </head>
 
   <body>
-    <div class="container">
-      <div id="top" class="span-24">
-        <div class="menu">
-          <ul>
-            <li><a href="{$viewurl}">View</a></li>
-          </ul>
-        </div>
-      </div>
+    <div id="wrapper">
+      <div id="innerwrapper">
 
-      <!-- Hack since empty divs aren't allowed and will ruin layout -->
-      <div id="contenttop" class="span-24">&#160;</div>
-
-        <div id="contentwrapper" class="span-24">
-          <div id="header" class="span-22 prepend-1 append-1">
-            <div id="title" class="span-15">
-              <a href="/"><img src="/media/img/logo.png"/></a>
-            </div>
-            <div id="login" class="span-5 append-1 last">
-              <a href="url django.contrib.auth.views.logout_then_login">Logout</a>
-            </div>
-          </div>
-
-          <div id="main" class="span-16 prepend-1">
-
-            <div class="page">
-              <div class="pagetitle">
-                <h2>Editing <xsl:value-of select="field[@name='title']"/></h2>
-              </div>
-
-              <div class="pagecontent">
-                 <form method="post">
-                  <input type="text" name="title" value="{field[@name='title']}" />
-                  <textarea name="content">
-                    <xsl:value-of select="field[@name='content']" />
-                  </textarea>
-                  <input type="submit" value="Save page" title="Save your changes" />
-                 </form>
-              </div>
-            </div>
-          </div>
-
-          <div id="sidebar" class="span-6 append-1 last">
-            <div id="wrapbox">
-              <div id="sidebarmenu" class="section">
-                <h3>Contents</h3>
-                <ul>
-                  <li><a href="/" title="Home">Home</a></li>
-                  <li><a href="/" title="Empty">Empty</a></li>
-                  <li><a href="/" title="Empty">Empty</a></li>
-                </ul>
-              </div>
+        <div id="header">
+          <div id="searchwrapper">
+            <form action="/search/" method="post">
+              <label for="id_search" id="search_label">Search</label>
+              <input type="text" class="searchbox" name="query" id="id_search"/>
+              <input type="image" src="/media/img/search.png" class="searchbox_submit" alt="Search" name="search"/>
+            </form>
+            <div id="nav">
+              <form method="get" action="/"><button type="submit">Home</button></form>
+              <form method="get" action="{$viewurl}"><button type="submit">View</button></form>
             </div>
           </div>
         </div>
-
-        <div id="footer" class="span-24 prepend-1">
-          This page was last modified <xsl:value-of select="field[@name='last_update']"/>
+        <h1 id="headline">Editing <xsl:value-of select="field[@name='title']" /></h1>
+        <div id="content">
+         <form method="post">
+          <label for="id_title">Title</label>
+          <input type="text" id="id_title" name="title" value="{field[@name='title']}" />
+          <label for="id_content">Content</label>
+          <textarea name="content" id="id_content" rows="10" cols="40">
+            <xsl:value-of select="field[@name='content']" />
+          </textarea>
+          <input type="submit" value="Save page" title="Save your changes" />
+         </form>
         </div>
-      </div>
-   </body>
+
+        <div id="footer">
+          <a href="http://localhost:8000/edit/{field[@name='slug']}">View this page on regular Viktigpedia</a><br />
+          Will disable mobile site for the rest of this session.
+        </div>
+      </div> <!-- end innerwrapper -->
+    </div> <!-- end wrapper -->
+ </body>
 </html>
 </xsl:template>
 </xsl:stylesheet>

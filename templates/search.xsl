@@ -51,7 +51,7 @@
               <div class="pagecontent">
                 <xsl:for-each select="object">
                   <p>
-                    <a href="/{field[@name='slug']}">
+                    <a href="/wiki/{field[@name='slug']}">
                       <xsl:value-of select="field[@name='title']" />
                     </a>
                   </p>
