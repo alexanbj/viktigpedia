@@ -21,7 +21,6 @@ from easymode.tree import xml
 from wiki.models import Article
 from wiki.utils import xslt_param_builder
 from wiki.utils import split_keywords
-#from wiki.utils import render_to_response
 
 try:
     WIKI_LOCK_DURATION = settings.WIKI_LOCK_DURATION
@@ -77,7 +76,7 @@ def edit_article(request, slug):
         lock = cache.get(article.title, None)
         if lock is None:
             lock = EditLock(article.title, request)
-        elif lock.is_mine(request):
+        elif not lock.is_mine(request):
             print "Possible editing conflict. Another user started editing", lock.created_at
             params['locked'] = xslt_param_builder("True")
             format = "%d %b %Y %H:%M:%S"

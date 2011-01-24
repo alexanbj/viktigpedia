@@ -45,3 +45,19 @@ def split_keywords(query):
 
     keywords.extend(query.split())
     return keywords
+
+def site_url():
+    """Generate a fully-qualified URL for the site so it is accessable outside
+    of Django's web requests. Used for tweets in Viktigpedia"""
+
+    from django.contrib.sites.models import Site
+    current_site = Site.objects.get_current()
+
+    protocol = getattr(settings, 'SITE_PROTOCOL', 'http')
+    port = getattr(settings, 'SITE_PORT', '')
+
+    url = '%s://%s' % (protocol, current_site.domain)
+
+    if port:
+        url += ':' + port
+    return url

@@ -4,11 +4,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from easymode.tree.decorators import toxml
 import tweepy
 
 from wiki.utils import slugify
+from wiki.utils import site_url
 
 @toxml
 class Article(models.Model):
@@ -45,6 +47,11 @@ def tweet(sender, **kwargs):
 
         api = tweepy.API(auth)
         obj = kwargs['instance']
-        lol = api.update_status(obj.title)
+
+        view_url = reverse('view_article', args=[obj.slug])
+
+        url = site_url() + view_url
+
+        lol = api.update_status(obj.title + " - " + url)
 
 post_save.connect(tweet, sender=Article)

@@ -71,7 +71,7 @@
         </div>
 
         <div id="footer" class="span-24 prepend-1">
-          This page was last modified <xsl:value-of select="field[@name='last_update']"/>
+          Code and design by Alexander Bjerkan
         </div>
       </div>
    </body>

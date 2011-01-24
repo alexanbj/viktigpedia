@@ -97,8 +97,8 @@
               <div id="sidebarmenu" class="section">
                 <h3>Editing</h3>
                 <p>
-                See <a href="/Markdown_Syntax/">lol</a> for a reference on how
-                to use Markdown
+                See <a href="http://daringfireball.net/projects/markdown/syntax">Daring Fireball</a> for a reference on how
+                to use Markdown.
                 </p>
 
                 Please remember to include '[TOC]' in the content to properly

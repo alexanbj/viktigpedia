@@ -63,7 +63,10 @@
                 href="https://github.com/alexanbj/viktigpedia">GitHub.</a>
                 </p>
 
-                This website is written in Python using the Django web framework.
+                  This website is written in <a
+                  href="http://www.python.org/">Python</a> using the <a
+                  href="http://www.djangoproject.com/">Django web framework</a>
+                  with XSL templates.
               </div>
             </div>
           </div>
@@ -83,7 +86,7 @@
         </div>
 
         <div id="footer" class="span-24 prepend-1">
-          Powered by Django
+          Code and design by Alexander Bjerkan
         </div>
       </div>
    </body>
