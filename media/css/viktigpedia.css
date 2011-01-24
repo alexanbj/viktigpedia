@@ -48,6 +48,22 @@ h1, h2, h3, h4, h5, h6
   height:20px;
 }
 
+#easyNotification
+{
+  padding:5px 10px;  
+  margin: 15px 0;
+  border:1px solid #C2660A;
+  background: #F5993D;
+  color:#333;
+  position:relative;
+}
+
+#easyNotification span
+{
+  float:right;
+  cursor:pointer;
+}
+
 #top
 {
 	text-align: right;
@@ -92,16 +108,6 @@ h1, h2, h3, h4, h5, h6
 	height: 50px;
 }
 
-#header #title .logo
-{
-	float: left;
-}
-
-/*#header #title #blogtitle
-{
-	margin-left: 68px;
-}*/
-
 #header #title h1
 {
 	font-size: 40px;
@@ -109,6 +115,11 @@ h1, h2, h3, h4, h5, h6
 	color: #525252;
 	margin-bottom: 5px;
   font-family: 'Crimson Text', arial, serif;
+}
+
+#header #title a
+{
+  text-decoration: none;
 }
 
 .page {
@@ -127,25 +138,10 @@ h1, h2, h3, h4, h5, h6
 	padding-right: 10px;
 }
 
-/*.page .pageheader .commentcount a
-{
-	text-decoration: none;
-	color: #4884bc;
-}*/
-
 .page .pageheader .pagetitle
 {
 	line-height: 20px;
 }
-
-/*.page .pageheader .pagetitle h2
-{
-	font-family: Georgia, Times, "Times New Roman", serif;
-	font-size: 20px;
-	padding: 0;
-	margin: 0;
-}*/
-
 
 .page .pagecontent a
 {

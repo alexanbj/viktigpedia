@@ -43,7 +43,7 @@
         <div id="contentwrapper" class="span-24">
           <div id="header" class="span-22 prepend-1 append-1">
             <div id="title" class="span-15">
-              <h1>ViktigpediA</h1>
+              <a href="/"><h1>ViktigpediA</h1></a>
             </div>
             <div id="searchwrapper" class="span-5 append-1 last">
               <form action="/search/" method="post">

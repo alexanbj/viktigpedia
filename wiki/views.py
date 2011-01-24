@@ -41,9 +41,6 @@ class EditLock():
 
 def index(request):
     latest_articles = Article.objects.order_by('-created_at')[:10]
-    #if request.method == 'POST':
-    #    if getattr(request.POST, 'query', None):
-    #        articles =  search(request.POST['query'])
     return render_to_response('base.xsl', latest_articles)
 
 def view_article(request, slug):
@@ -55,7 +52,6 @@ def view_article(request, slug):
             return HttpResponseRedirect(reverse('view_article', args=[article.slug]))
 
         params = {'editurl' : xslt_param_builder(edit_url)}
-        #print xml(article)
         return render_to_response('article.xsl', article, params)
 
     # If the article does not exist, we go to edit mode
@@ -64,6 +60,7 @@ def view_article(request, slug):
 
 def edit_article(request, slug):
     article = None
+    params = {}
 
     try:
         # Enables case-insentivity
@@ -80,8 +77,11 @@ def edit_article(request, slug):
         lock = cache.get(article.title, None)
         if lock is None:
             lock = EditLock(article.title, request)
-        elif not lock.is_mine(request):
+        elif lock.is_mine(request):
             print "Possible editing conflict. Another user started editing", lock.created_at
+            params['locked'] = xslt_param_builder("True")
+            format = "%d %b %Y %H:%M:%S"
+            params['lock_created'] = xslt_param_builder( lock.created_at.strftime(format) )
 
     elif request.method == 'POST':
         article.title = request.POST['title']
@@ -94,7 +94,7 @@ def edit_article(request, slug):
         return HttpResponseRedirect(view_url)
 
     view_url = reverse('view_article', args=[slug])
-    params = {'viewurl' : xslt_param_builder(view_url)}
+    params['viewurl'] = xslt_param_builder(view_url)
 
     return render_to_response('edit_article.xsl', article, params)
 
@@ -110,8 +110,6 @@ def search(request):
 
 
         params = {'query' : xslt_param_builder(request.POST['query'])}
-        #print result
-        #print xml(result)
 
         return render_to_response('search.xsl', result, params)
 
